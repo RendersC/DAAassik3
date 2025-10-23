@@ -6,7 +6,9 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.*;
 
+
 public class Main {
+    //edge structure
     static class Edge {
         String from;
         String to;
@@ -17,13 +19,13 @@ public class Main {
             this.weight = weight;
         }
     }
-
+    //graph structure
     static class Graph {
         int id;
         List<String> nodes;
         List<Edge> edges;
     }
-
+    //Disjoint set object
     static class DisjointSet {
         Map<String, String> parent = new HashMap<>();
         int operations = 0;
@@ -42,7 +44,7 @@ public class Main {
             if (!rootA.equals(rootB)) parent.put(rootB, rootA);
         }
     }
-
+    //kruskal's algorithm
     static Map<String, Object> kruskal(Graph graph) {
         long start = System.nanoTime();
         List<Edge> result = new ArrayList<>();
@@ -69,7 +71,7 @@ public class Main {
         res.put("execution_time_ms", timeMs);
         return res;
     }
-
+    //Prim's algorithm
     static Map<String, Object> prim(Graph graph) {
         long start = System.nanoTime();
         Map<String, List<Edge>> adj = new HashMap<>();
@@ -104,7 +106,7 @@ public class Main {
         res.put("execution_time_ms", timeMs);
         return res;
     }
-
+    //RUN
     public static void main(String[] args) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String inputPath = "src/main/resources/ass_3_input.json";
@@ -130,5 +132,6 @@ public class Main {
             gson.toJson(finalOutput, writer);
         }
         System.out.println("Results written to " + outputPath);
+        //results saved on the path
     }
 }
